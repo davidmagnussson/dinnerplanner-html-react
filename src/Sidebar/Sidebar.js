@@ -39,7 +39,8 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="Sidebar">
+      <div className="Sidebar col-sm-3">
+        {/* TODO: Add menu with working collapse....*/}
         <h3>This is the sidebar</h3>
         <p>
         People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>

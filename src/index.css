@@ -1,0 +1,208 @@
+/* TODO: Split up CSS to specific files */
+ul {
+    list-style: none;
+}
+
+ul li p {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    color: black;
+    background-color:#f4b642;
+    border: 1px solid #333;
+    box-shadow: 2px 2px 5px #000;
+}
+
+.App-title {
+   padding: 3vh;
+   text-align:center;
+   background: lightgrey;
+   border-bottom: 1px solid grey;
+}
+
+#viewDiv {
+    height: 86.5vh;
+}
+
+#site-content {
+  overflow: auto;
+}
+
+#filter-div{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    height:15vh;
+}
+
+#cart{
+    border:2px solid black;
+    /*border-left:2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;*/
+}
+
+#cart-description{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    background: lightgrey;
+}
+
+#cart-description p{
+    padding-top:11px;
+    display: inline;
+}
+
+.yellow {
+    background-color:#f4b642;
+}
+
+.lightYellow {
+    background-color:#f5c753;
+}
+
+.padTop {
+    padding-top: 15px;
+}
+
+.foodBigImg {
+    width: 100%;
+    height: 30vh;
+}
+
+.restDiv {
+    min-height: 75vh;
+    padding-top: 3vh;
+}
+
+/* Ingredient Box*/
+#ingredientBox {
+    min-height: 75vh!important;
+    padding-top: 15px;
+    padding-bottom:15px;
+}
+
+#ingredients {
+    min-height: 60vh!important;
+}
+
+#ingredientSummary {
+    height: 7vh!important;
+}
+
+#myDinner {
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    min-height: 10vh!important;
+    border-bottom: 1px solid #333;
+}
+
+#meals {
+    min-height: 50vh;
+}
+
+#mealsCenterDiv {
+    min-height: 40vh;
+    border-right: 1px solid #ccc;
+}
+
+@media screen and (max-width: 768px) {
+    #mealsCenterDiv {
+        border-right: none;
+    }
+}
+
+.itemDiv {
+    margin-bottom: 20px;
+}
+
+.food-image{
+    height: 25vh;
+    width: 22vh;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.food-image img{
+    height: 15vh;
+    width: 100%;
+}
+
+.food-image #food-name{
+    height: 9.5vh;
+    font-size: 0.9em;
+    text-align: center;
+    background: lightgrey;
+    border-top: 2px solid black;
+    overflow:auto;
+}
+
+#food-container{
+    padding:10px;
+}
+
+#site-information{
+    margin-top: 15%;
+}
+
+.cart-item{
+    background: lightgrey;
+    margin-top:5px;
+    border: 1px solid black;
+}
+
+#menu-button{
+    color: black;
+    background-color:white;
+    border: none;
+    box-shadow: none;
+}
+.jumbotron {
+    background: none;
+    border-radius:0px;
+}
+
+#mealsCenterDiv .food-image {
+    margin: 20px;
+}
+
+#mealsCenterDiv .food-imagxe .text-right {
+    margin-top: 10px;
+}
+
+.blackBorder {
+    border: 2px solid #000;
+}
+
+@media (min-width: 770px) {
+    #viewDiv > div{
+        height:inherit;
+    }
+
+    #cart{
+        display:block!important;
+        visibility: visible;
+    }
+}
+
+#food-cost{
+  margin-right:5px;
+}
+
+.fa-pizza-slice {
+  font-size: 8em;
+  color: #ff8533;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+#itemDiv {
+  height: 65vh;
+  overflow: auto;
+}
+
+.finalImage {
+  width: inherit;
+}
