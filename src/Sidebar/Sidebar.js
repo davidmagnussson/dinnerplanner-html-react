@@ -4,14 +4,14 @@ class Sidebar extends Component {
 
   constructor(props) {
     super(props)
-    
+
     // we put on state the properties we want to use and modify in the component
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
   }
 
-  // this methods is called by React lifecycle when the 
+  // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to setup model observer
   componentDidMount() {
