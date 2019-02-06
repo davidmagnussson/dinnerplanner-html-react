@@ -24,7 +24,7 @@ const DinnerModel = function () {
       .then(processResponse)
       .catch(handleError)
   }
-  
+
   // API Helper methods
 
   const processResponse = function (response) {
@@ -33,7 +33,7 @@ const DinnerModel = function () {
     }
     throw response;
   }
-  
+
   const handleError = function (error) {
     if (error.json) {
       error.json().then(error => {
@@ -59,4 +59,4 @@ const DinnerModel = function () {
   };
 };
 
-export const modelInstance = new DinnerModel();
+export const modelInstance = new DinnerModel();  // Lägger in hela DinnerModel objektet till en konstant som heter modelInstance, som skickas iväg
