@@ -6,6 +6,10 @@ class InfoDish extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      numberOfGuests : this.props.model.getNumberOfGuests(),
+    };
   }
 
   render() {
@@ -13,7 +17,9 @@ class InfoDish extends Component {
       <div className="InfoDish row container-fluid">
 
         {/* We pass the model as property to the Sidebar component */}
-        <Sidebar model={this.props.model}/>
+        <div className="col-sm-3">
+          <Sidebar model={this.props.model}/>
+        </div>
 
         <div className="col-sm-9">
           <div className="row">
@@ -29,7 +35,7 @@ class InfoDish extends Component {
             <div id="ingredientContainer" className="col-md-6 col-sm-12">
               <div id="ingredientBox" className="col-xs-12 lightYellow text-left">
                   <div id="ingredients" className="col-sm-12">
-                      <p>Ingredients for <span id="numberOfGuests">{/*numberOfGuests*/}</span> people</p>
+                      <p>Ingredients for <span id="numberOfGuests">{this.state.numberOfGuests}</span> people</p>
                       <hr/>
                       <div className="col-sm-12 row">
                       <ul id="ingredientList" className="col-sm-12">

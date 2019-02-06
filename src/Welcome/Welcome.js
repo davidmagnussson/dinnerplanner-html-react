@@ -13,9 +13,6 @@ class Welcome extends Component {
                     <Link to="/search">
                         <button type="button">Create new dinner</button>
                     </Link>
-                    {/*<Link to="/browseDishes">
-                        <button type="button">Browse Dishes</button>
-                    </Link>*/}
                 </div>
             </div>
       </div>

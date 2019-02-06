@@ -41,6 +41,7 @@ class OverviewDish extends Component {
                         <div className="col-md-2">
                             <div id="totalPrice" className="d-none d-md-block d-lg-block"></div>
                             Total: <br/> <span onChange={()=>{return this.props.model.getTotalMenuPrice()}}>0</span> USD
+                            {/*Kan vi inte bara skriva såhär: Total: <br/> <span>{this.props.model.getTotalMenuPrice()}</span> USD    -   Varför ha en onChange?*/}
                         </div>
                     </div>
                     <hr/>
