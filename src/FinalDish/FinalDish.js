@@ -9,7 +9,7 @@ class FinalDish extends Component {
       <div className="FinalDish row container-fluid">
 
         <div className="col-sm-12">
-            <MyDinner/>
+            <MyDinner model={this.props.model}/>
 
             <div className="restDiv col-md-12">
               {/*foodItems*/}

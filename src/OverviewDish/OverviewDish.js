@@ -3,6 +3,7 @@ import './OverviewDish.css';
 
 import { Link } from 'react-router-dom';
 import MyDinner from '../MyDinner/MyDinner';
+import FoodItem from '../FoodItem/FoodItem';
 
 class OverviewDish extends Component {
   render() {
@@ -11,7 +12,7 @@ class OverviewDish extends Component {
 
         <div className="col-sm-12">
 
-            <MyDinner/>
+            <MyDinner model={this.props.model}/>
 
             <div className="restDiv col-md-12">
                 <div id="meals" className="col-md-12 container-fluid">
