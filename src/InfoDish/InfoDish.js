@@ -3,6 +3,11 @@ import './InfoDish.css';
 import Sidebar from '../Sidebar/Sidebar';
 
 class InfoDish extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="InfoDish row container-fluid">

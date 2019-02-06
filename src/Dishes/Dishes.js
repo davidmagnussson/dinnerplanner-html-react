@@ -23,7 +23,7 @@ class Dishes extends Component {
   componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance.getAllDishes().then(dishes => {
+    modelInstance.getShowDishes().then(dishes => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
@@ -47,7 +47,7 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <li key={dish.id}>{dish.title}</li>
+          <li key={dish.id}>{dish.title}{/* TODO: Use the FoodItem component.*/}</li>
         )
         break;
       default:

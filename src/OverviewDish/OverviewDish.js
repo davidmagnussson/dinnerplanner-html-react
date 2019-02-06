@@ -6,7 +6,22 @@ import MyDinner from '../MyDinner/MyDinner';
 import FoodItem from '../FoodItem/FoodItem';
 
 class OverviewDish extends Component {
+
+  constructor(props) {
+    super(props);
+
+    // NOTE: ONLY FOR TESTING
+    // window.setTimeout(()=>{
+    //   console.log(this.props.model.getTotalMenuPrice());
+    // }, 5000);
+  }
+
   render() {
+
+    let foodItems = this.props.model.getFullMenu().map((dish) =>
+      <li key={dish.id}>{dish.title}{/* TODO: Use the FoodItem component.*/}</li>
+    );
+
     return (
       <div className="OverviewDish row container-fluid">
 
@@ -20,12 +35,12 @@ class OverviewDish extends Component {
                         <div className="col-md-2"></div>
                         <div id="mealsCenterDiv" className="col-md-8 jumbotron vertical-center">
                             <div className="row">
-                              {/*foodItems*/}
+                              {foodItems}
                             </div>
                         </div>
                         <div className="col-md-2">
                             <div id="totalPrice" className="d-none d-md-block d-lg-block"></div>
-                            Total: <br/> <span>{/*totalMenuPrice*/}</span> USD
+                            Total: <br/> <span onChange={()=>{return this.props.model.getTotalMenuPrice()}}>0</span> USD
                         </div>
                     </div>
                     <hr/>

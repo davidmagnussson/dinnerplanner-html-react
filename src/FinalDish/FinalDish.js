@@ -4,6 +4,11 @@ import './FinalDish.css';
 import MyDinner from '../MyDinner/MyDinner';
 
 class FinalDish extends Component {
+  
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="FinalDish row container-fluid">
