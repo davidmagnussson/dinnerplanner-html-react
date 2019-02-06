@@ -11,7 +11,7 @@ class Sidebar extends Component {
     // Här kan vi sätta alla variabler som vi behöver hämta från modellen.
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests(),
-      test: 2
+      menuprice: this.props.model.getTotalMenuPrice(),
     }
   }
 
@@ -33,7 +33,8 @@ class Sidebar extends Component {
   // cause the component to re-render, MAN UPPDATERAR DE OLIKA STATE:S SOM FINNS, DÅ VI HÄMTAR STATES VARIABLER UPPDATERAS DE AUTOMATISKT
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menuprice: this.props.model.getNumberOfGuests(),
     })
   }
 
@@ -45,7 +46,7 @@ class Sidebar extends Component {
   // Nedan är det vi vill rendera in där vi "Kallar" komponenten <Sidebar />
   render() {
     return (
-      <div className="Sidebar col-sm-3" id="cart">
+      <div className="Sidebar col-md-12" id="cart">
         <div id="header-in-cart" className="row">
             <div className="col">
                 <strong>My Dinner</strong>
@@ -77,7 +78,7 @@ class Sidebar extends Component {
             </div>
 
             <div id="menu-list container-fluid">
-                <p className="text-right"><span className="total_cost">SEK 0.00</span></p>
+                <p className="text-right"><span className="total_cost">SEK {this.state.menuprice}</span></p>
                 <div className="text-center">
                   <Link to="/overviewDish">
                       <button id="confirm">Confirm Order</button>
