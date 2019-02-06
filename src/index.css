@@ -158,9 +158,10 @@ button {
     border: none;
     box-shadow: none;
 }
+
 .jumbotron {
-    background: none;
-    border-radius:0px;
+    background: none!important;
+    border-radius:0px!important;
 }
 
 #mealsCenterDiv .food-image {
@@ -205,4 +206,9 @@ button {
 
 .finalImage {
   width: inherit;
+}
+
+.InfoDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
+  padding: 0px!important;
+  margin: 0px!important;
 }

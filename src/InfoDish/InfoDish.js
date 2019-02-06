@@ -14,7 +14,7 @@ class InfoDish extends Component {
           <div className="row">
             <div className="container col-md-6 padTop col-sm-12">
                 <h3>{/*foodName*/}</h3>
-                <img className="foodBigImg" src="{/*TODOOOO imgSrc*/}"/>
+                <img alt="displayed food item." className="foodBigImg" src="{/*TODOOOO imgSrc*/}"/>
                 <br/>
                 <p>{/*foodDesc*/}</p>
                 <button id="backToSearch">Back To Search</button>
@@ -37,7 +37,7 @@ class InfoDish extends Component {
                       <hr/>
                       <div className="row">
                           <div className="col">
-                              <button id="addToMenu" data-food-id="${id}" className="yellow text-left">
+                              <button id="addToMenu" data-food-id="{/*TODOOOO ID*/}" className="yellow text-left">
                                   Add to menu
                               </button>
                           </div>
