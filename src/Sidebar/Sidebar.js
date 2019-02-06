@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+
+import { Link } from 'react-router-dom';
+
 class Sidebar extends Component {
 
   constructor(props) {
@@ -76,7 +79,9 @@ class Sidebar extends Component {
             <div id="menu-list container-fluid">
                 <p className="text-right"><span className="total_cost">SEK 0.00</span></p>
                 <div className="text-center">
-                    <button id="confirm">Confirm Order</button>
+                  <Link to="/overviewDish">
+                      <button id="confirm">Confirm Order</button>
+                  </Link>
                 </div><br/>
             </div>
         </div>
