@@ -126,7 +126,7 @@ class InfoDish extends Component {
       <div className="InfoDish row container-fluid">
 
         {/* We pass the model as property to the Sidebar component */}
-        <div className="col-sm-3">
+        <div id="sideBar" className="col-sm-3">
           <Sidebar model={this.props.model}/>
         </div>
 

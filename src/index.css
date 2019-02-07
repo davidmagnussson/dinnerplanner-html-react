@@ -206,7 +206,7 @@ button {
   width: inherit;
 }
 
-.InfoDish, .SelectDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
+.InfoDish #sideBar, .InfoDish, .SelectDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
   padding: 0px!important;
   margin: 0px!important;
 }
