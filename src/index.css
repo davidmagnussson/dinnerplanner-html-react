@@ -43,6 +43,7 @@ button {
 
 #cart{
     border: 2px solid black;
+    height: 100%;
 }
 
 #cart-description{
@@ -209,16 +210,16 @@ button {
   width: inherit;
 }
 
-.InfoDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
+.InfoDish, .SelectDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
   padding: 0px!important;
   margin: 0px!important;
 }
 
 #test1{
-  background: lightgrey;
-  border: 2px solid black;
+  padding: 0px!important;
+  margin: 0px!important;
 }
 
-#test2{
-  background: lightgrey;
+.Dishes{
+  width: 100%;
 }
