@@ -75,6 +75,7 @@ const DinnerModel = function () {
         }
       }
       selectedDishes.push(data);
+      // console.log("MENU: " + this.getFullMenu.length);
       notifyObservers();
     }).catch(handleError);
   }
