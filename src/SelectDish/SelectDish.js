@@ -6,7 +6,7 @@ import Dishes from '../Dishes/Dishes';
 class SelectDish extends Component {
   render() {
     return (
-      <div className="SelectDish row"> {/*Detta är alltså den gamla foodView */}
+      <div className="SelectDish row container-fluid"> {/*Detta är alltså den gamla foodView */}
         <div className="col-md-3" id="test1">
           <Sidebar model={this.props.model}/>
         </div>
@@ -42,8 +42,7 @@ class SelectDish extends Component {
       	        <div id="food-container" className="row">
       	            <div className="d-md-none col-sm-4 col-3"></div>
       	            <div className="col-md-12 col-sm-4 col-8 row" id="itemDiv">
-                      {/*<h1 className="fas fa-pizza-slice fa-spin text-center"></h1>*/}
-                      <Dishes/>{/*DENNA SKA ERSÄTTA food-div som fanns tidigare*/}
+                      <Dishes/>
       	            </div>
       	            <div className="d-md-none col-sm-2 col-1"></div>
       	        </div>

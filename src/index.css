@@ -209,7 +209,7 @@ button {
   width: inherit;
 }
 
-.InfoDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
+.InfoDish, .SelectDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
   padding: 0px!important;
   margin: 0px!important;
 }
@@ -217,4 +217,8 @@ button {
 #test1{
   padding: 0px!important;
   margin: 0px!important;
+}
+
+.Dishes{
+  width: 100%;
 }
