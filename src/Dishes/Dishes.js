@@ -13,14 +13,19 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: 'INITIAL'
+      status: 'INITIAL',
+      // dishesList: this.props.dishesToShow,
     }
   }
+
+  // this is called when component is removed from the DOM
+  // good place to remove observer
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   componentDidMount = () => {
+    this.props.model.addObserver(this)
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.getShowDishes().then(dishes => {
@@ -35,9 +40,26 @@ class Dishes extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.props.model.removeObserver(this)
+  }
+
+
+  update() {
+    this.props.model.getShowDishes().then(dish => {
+      this.setState({
+        status: 'LOADED',
+        dishes: dish.results,
+      });
+    }).catch(() => {
+      this.setState({
+        status: 'ERROR'
+      })
+    });
+  }
+
   render() {
     let dishesList = null;
-
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
@@ -46,9 +68,14 @@ class Dishes extends Component {
         dishesList = <em>Loading...</em>
         break;
       case 'LOADED':
-        dishesList = this.state.dishes.map((dish) =>
-          <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={'https://spoonacular.com/recipeImages/' + dish.imageUrls[0]} link={"/infoDish/"+dish.id}/>
-        )
+        console.log(this.state.dishes);
+        if(this.state.dishes.length == 0 || this.state.dishes === undefined){
+          dishesList = <em>No results found!</em>
+        } else{
+          dishesList = this.state.dishes.map((dish) =>
+            <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={'https://spoonacular.com/recipeImages/' + dish.imageUrls[0]} link={"/infoDish/"+dish.id}/>
+          )
+        }
         break;
       default:
         dishesList = <b>Failed to load data, please try again</b>
