@@ -24,6 +24,7 @@ button {
    text-align:center;
    background: lightgrey;
    border-bottom: 1px solid grey;
+   margin-bottom: 0px;
 }
 
 #viewDiv {

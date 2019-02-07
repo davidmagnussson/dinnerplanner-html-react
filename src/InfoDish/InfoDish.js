@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './InfoDish.css';
 import Sidebar from '../Sidebar/Sidebar';
+import { Link } from 'react-router-dom';
 
 class InfoDish extends Component {
 
@@ -50,6 +51,12 @@ class InfoDish extends Component {
 
   }
 
+  addToDish(){
+    const foodID = window.location.href.split("/").slice(-1)[0];
+    this.props.model.addDishToMenu(foodID);
+    console.log("dasa");
+  }
+
   render() {
     let ingredients =
       this.state.ingredients.map((ingredient) =>
@@ -82,7 +89,9 @@ class InfoDish extends Component {
                 <img alt="displayed food item." className="foodBigImg" src={imgSrc}/>
                 <br/>
                 <p>No description found for this product.</p>
-                <button id="backToSearch">Back To Search</button>
+                <Link to="/search">
+                  <button id="backToSearch">Back To Search</button>
+                </Link>
                 <br/><br/>
             </div>
 
@@ -102,7 +111,7 @@ class InfoDish extends Component {
                       <hr/>
                       <div className="row">
                           <div className="col">
-                              <button id="addToMenu" data-food-id={this.props.id} className="yellow text-left">
+                              <button onClick={this.addToMenu} data-food-id={this.props.id} className="yellow text-left">
                                   Add to menu
                               </button>
                           </div>

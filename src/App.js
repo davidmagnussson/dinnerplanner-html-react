@@ -16,10 +16,10 @@ class App extends Component {
       test: "Is dis a ting?",
     }
     // NOTE: ONLY FOR TESTING
-    modelInstance.addDishToMenu("479101");
-    window.setTimeout(()=>{
-      console.log(modelInstance.getTotalMenuPrice());
-    }, 3000);
+    // modelInstance.addDishToMenu("479101");
+    // window.setTimeout(()=>{
+    //   console.log(modelInstance.getTotalMenuPrice());
+    // }, 3000);
   }
 
   render() {
