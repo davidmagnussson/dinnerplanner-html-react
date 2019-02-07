@@ -15,12 +15,11 @@ class App extends Component {
       title: 'Dinner Planner',
       test: "Is dis a ting?",
     }
-    // NOTE: FOR TESTING
-    // modelInstance.addDishToMenu("479101");
-    // window.setTimeout(()=>{
-    //   console.log(modelInstance.getTotalMenuPrice());
-    // }, 5000);
-
+    // NOTE: ONLY FOR TESTING
+    modelInstance.addDishToMenu("479101");
+    window.setTimeout(()=>{
+      console.log(modelInstance.getTotalMenuPrice());
+    }, 3000);
   }
 
   render() {

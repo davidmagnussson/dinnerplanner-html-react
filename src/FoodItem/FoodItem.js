@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import './FoodItem.css';
+
 class FoodItem extends Component {
-  
+
   constructor(props) {
     super(props);
   }
@@ -11,14 +13,15 @@ class FoodItem extends Component {
     return (
       <div className="FoodItem">
 
-        <Link to="/infoDish/{/*TODOOO FOOD ID*/}">
-          <div className="food-image" id="{/*(Maybe) foodID aswell*/}">
+        <Link to={this.props.link}>
+          <div className="food-image" id={this.props.id}>
               <div>
-                  <img alt="food pic" src="{/*imgSrc*/}"/>
+                  <img alt="food pic" src={this.props.imgSrc}/>
               </div>
               <div id="food-name">
-                  <p>{/*foodName*/}</p>
+                  <p>{this.props.foodName}</p>
               </div>
+              <p className="text-right">{this.props.cost}</p>
           </div>
         </Link>
 

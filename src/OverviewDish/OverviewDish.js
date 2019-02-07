@@ -9,18 +9,16 @@ class OverviewDish extends Component {
 
   constructor(props) {
     super(props);
-
-    // NOTE: ONLY FOR TESTING
-    // window.setTimeout(()=>{
-    //   console.log(this.props.model.getTotalMenuPrice());
-    // }, 5000);
   }
 
   render() {
 
     let foodItems = this.props.model.getFullMenu().map((dish) =>
-      <li key={dish.id}>{dish.title}{/* TODO: Use the FoodItem component.*/}</li>
+      /* NOTE: Do we need ID if we have key? */
+      <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={dish.image} link={"/infoDish/"+dish.id} cost={"USD "+dish.pricePerServing}/>
     );
+
+    let fullMenuPrice = this.props.model.getTotalMenuPrice();
 
     return (
       <div className="OverviewDish row container-fluid">
@@ -40,7 +38,7 @@ class OverviewDish extends Component {
                         </div>
                         <div className="col-md-2">
                             <div id="totalPrice" className="d-none d-md-block d-lg-block"></div>
-                            Total: <br/> <span onChange={()=>{return this.props.model.getTotalMenuPrice()}}>0</span> USD
+                            Total: <br/> <span>{fullMenuPrice}</span> USD
                         </div>
                     </div>
                     <hr/>
