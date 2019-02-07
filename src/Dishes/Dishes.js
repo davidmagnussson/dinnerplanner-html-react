@@ -57,7 +57,7 @@ class Dishes extends Component {
     }
 
     return (
-      <div className="Dishes">
+      <div className="Dishes"> {/*Detta är diven där maten ska ligga, den hämtar sedan dishesList */}
         <h3>Dishes</h3>
         <ul>
           {dishesList}

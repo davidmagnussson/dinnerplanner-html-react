@@ -1,4 +1,8 @@
 /* TODO: Split up CSS to specific files */
+*{
+  margin: 0;
+  padding: 0;
+}
 ul {
     list-style: none;
 }
@@ -37,10 +41,7 @@ button {
 }
 
 #cart{
-    border:1px solid black;
-    /*border-left:2px solid black;
-    border-top: 2px solid black;
-    border-right: 2px solid black;*/
+    border: 2px solid black;
 }
 
 #cart-description{
@@ -210,4 +211,13 @@ button {
 .InfoDish, .OverviewDish, .FinalDish, .OverviewDish > .col-sm-12, .FinalDish > .col-sm-12 {
   padding: 0px!important;
   margin: 0px!important;
+}
+
+#test1{
+  background: lightgrey;
+  border: 2px solid black;
+}
+
+#test2{
+  background: lightgrey;
 }
