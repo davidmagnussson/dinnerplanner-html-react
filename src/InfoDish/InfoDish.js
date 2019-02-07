@@ -6,13 +6,67 @@ class InfoDish extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       numberOfGuests : this.props.model.getNumberOfGuests(),
-    };
+      foodName: "",
+      instructions: "",
+      pricePerServing: 0,
+      ingredients: []
+    }
+  }
+
+  componentDidMount(){
+    // Stack thread: https://stackoverflow.com/questions/33242378/rendering-react-components-with-promises-inside-the-render-method
+    var self = this;
+
+      // Get ID from URL and use it to init a Promise to then set variables:
+      const foodID = window.location.href.split("/").slice(-1)[0];
+      this.props.model.getDish(foodID).then((data)=>{
+        // Set Once:
+        self.setState({
+              foodName : data.title,
+              instructions : data.instructions,
+              pricePerServing : data.pricePerServing,
+              imgSrc : data.image
+            });
+        data.extendedIngredients.map((ingredients) => {
+          // Get the necessary info for each ingredient
+          var ingredient = {
+                id: ingredients.id,
+                name: ingredients.name,
+                amount: ingredients.amount,
+                unit: ingredients.unit
+              };
+
+          // Lets add to the current "ingredients" in the state.
+          var newIngredients = self.state.ingredients.slice();
+          newIngredients.push(ingredient);
+          self.setState({
+            ingredients: newIngredients
+          });
+
+        });
+      });
+
   }
 
   render() {
+    let ingredients =
+      this.state.ingredients.map((ingredient) =>
+        <li key={ingredient.id} className="ingredientItem col-sm-12">
+          <div className="row">
+              <div id="quantityAndUnit" className="col">{ingredient.amount} {ingredient.unit}</div>
+              <div id="name" className="col">{ingredient.name}</div>
+          </div>
+          <br/>
+        </li>
+      );
+
+    let foodName = this.state.foodName;
+    let instructions = this.state.instructions;
+    let pricePerServing = this.state.pricePerServing;
+    let imgSrc = this.state.imgSrc;
+
     return (
       <div className="InfoDish row container-fluid">
 
@@ -24,10 +78,10 @@ class InfoDish extends Component {
         <div className="col-sm-9">
           <div className="row">
             <div className="container col-md-6 padTop col-sm-12">
-                <h3>{/*foodName*/}</h3>
-                <img alt="displayed food item." className="foodBigImg" src="{/*TODOOOO imgSrc*/}"/>
+                <h3>{foodName}</h3>
+                <img alt="displayed food item." className="foodBigImg" src={imgSrc}/>
                 <br/>
-                <p>{/*foodDesc*/}</p>
+                <p>No description found for this product.</p>
                 <button id="backToSearch">Back To Search</button>
                 <br/><br/>
             </div>
@@ -39,7 +93,7 @@ class InfoDish extends Component {
                       <hr/>
                       <div className="col-sm-12 row">
                       <ul id="ingredientList" className="col-sm-12">
-                          {/*ingredientsHtml*/}
+                          {ingredients}
                       </ul>
                       </div>
                   </div>
@@ -48,12 +102,12 @@ class InfoDish extends Component {
                       <hr/>
                       <div className="row">
                           <div className="col">
-                              <button id="addToMenu" data-food-id="{/*TODOOOO ID*/}" className="yellow text-left">
+                              <button id="addToMenu" data-food-id={this.props.id} className="yellow text-left">
                                   Add to menu
                               </button>
                           </div>
                           <div className="col">
-                              <p className="text-right">USD <span id="totalIngredientCost">{/*totalIngredientCost*/}</span></p>
+                              <p className="text-right">USD <span id="totalIngredientCost">{this.props.model.getMenuPrice(pricePerServing)}</span></p>
                           </div>
                       </div>
 
@@ -66,7 +120,7 @@ class InfoDish extends Component {
         <div className="row">
             <div className="container col-md-12 padTop">
                 <h3>Preparation</h3>
-                <p>{/*instructions*/}</p>
+                <p>{instructions}</p>
             </div>
         </div>
 

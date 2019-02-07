@@ -47,6 +47,10 @@ const DinnerModel = function () {
     return allIngredients;
   }
 
+  this.getMenuPrice = function(price) {
+    return Math.round(price * this.getNumberOfGuests());
+  }
+
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   this.getTotalMenuPrice = function() {
     var sum = 0;

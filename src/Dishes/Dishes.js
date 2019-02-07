@@ -24,6 +24,7 @@ class Dishes extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.getShowDishes().then(dishes => {
+      console.log(dishes);
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
