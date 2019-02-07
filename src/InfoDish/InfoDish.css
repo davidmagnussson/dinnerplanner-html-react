@@ -1,3 +1,7 @@
 #ingredientContainer {
   padding: 0px!important;
 }
+
+#site-content {
+  overflow: auto;
+}

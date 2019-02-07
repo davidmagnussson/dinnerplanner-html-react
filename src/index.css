@@ -31,10 +31,6 @@ button {
     height: 86.5vh;
 }
 
-#site-content {
-  overflow: auto;
-}
-
 #filter-div{
     border-bottom: 2px solid black;
     border-top: 2px solid black;

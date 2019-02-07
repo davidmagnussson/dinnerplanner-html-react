@@ -8,17 +8,22 @@ class InfoDish extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      status: 'INITIAL',
       numberOfGuests : this.props.model.getNumberOfGuests(),
       foodName: "",
       instructions: "",
-      pricePerServing: 0,
+      totalPrice: 0,
       ingredients: []
     }
+
+    this.addDishToMenu = this.addDishToMenu.bind(this);
   }
 
+  // Makes API-Call Promise and sets state as data is loaded.
   componentDidMount(){
+    this.props.model.addObserver(this);
     // Stack thread: https://stackoverflow.com/questions/33242378/rendering-react-components-with-promises-inside-the-render-method
-    var self = this;
+    const self = this;
 
       // Get ID from URL and use it to init a Promise to then set variables:
       const foodID = window.location.href.split("/").slice(-1)[0];
@@ -27,52 +32,95 @@ class InfoDish extends Component {
         self.setState({
               foodName : data.title,
               instructions : data.instructions,
-              pricePerServing : data.pricePerServing,
+              pricePerServing: data.pricePerServing,
+              totalPrice : Math.floor(data.pricePerServing * this.props.model.getNumberOfGuests()),
               imgSrc : data.image
             });
         data.extendedIngredients.map((ingredients) => {
           // Get the necessary info for each ingredient
-          var ingredient = {
+          let ingredient = {
                 id: ingredients.id,
                 name: ingredients.name,
-                amount: ingredients.amount,
+                baseAmount: ingredients.amount,
+                amount: Math.floor(ingredients.amount * this.props.model.getNumberOfGuests()),
                 unit: ingredients.unit
               };
 
           // Lets add to the current "ingredients" in the state.
-          var newIngredients = self.state.ingredients.slice();
+          let newIngredients = self.state.ingredients.slice();
           newIngredients.push(ingredient);
           self.setState({
             ingredients: newIngredients
           });
 
         });
+
+        // Everything went well:
+        this.setState({
+          status: 'LOADED'
+        });
+
+      }).catch(() => {
+        this.setState({
+          status: 'ERROR'
+        })
       });
 
   }
 
-  addToDish(){
+  componentWillUnmount() {
+    this.props.model.removeObserver(this);
+  }
+
+  // Updates ingredient amounts, number of guests and totalPrice.
+  update() {
+    const numGuests = this.props.model.getNumberOfGuests();
+
+    for(let key in this.state.ingredients) {
+      Math.floor(this.state.ingredients[key].amount = this.state.ingredients[key].baseAmount * numGuests)
+    }
+
+    this.setState({
+      numberOfGuests: numGuests,
+      totalPrice: Math.floor(this.state.pricePerServing * numGuests),
+    })
+  }
+
+  // Adds the current dish to the menu when the "Add to menu" btn is clicked.
+  addDishToMenu(){
     const foodID = window.location.href.split("/").slice(-1)[0];
     this.props.model.addDishToMenu(foodID);
-    console.log("dasa");
   }
 
   render() {
-    let ingredients =
-      this.state.ingredients.map((ingredient) =>
-        <li key={ingredient.id} className="ingredientItem col-sm-12">
-          <div className="row">
-              <div id="quantityAndUnit" className="col">{ingredient.amount} {ingredient.unit}</div>
-              <div id="name" className="col">{ingredient.name}</div>
-          </div>
-          <br/>
-        </li>
-      );
 
-    let foodName = this.state.foodName;
-    let instructions = this.state.instructions;
-    let pricePerServing = this.state.pricePerServing;
-    let imgSrc = this.state.imgSrc;
+    let ingredients, foodName, instructions, totalPrice, imgSrc,description;
+    switch (this.state.status) {
+      case 'INITIAL':
+        description = ingredients = foodName = instructions = <em>Loading...</em>
+        break;
+      case 'LOADED':
+        ingredients =
+          this.state.ingredients.map((ingredient) =>
+            <li key={ingredient.id} className="ingredientItem col-sm-12">
+              <div className="row">
+                  <div id="quantityAndUnit" className="col">{ingredient.amount} {ingredient.unit}</div>
+                  <div id="name" className="col">{ingredient.name}</div>
+              </div>
+              <br/>
+            </li>
+          );
+
+        foodName = this.state.foodName;
+        instructions = this.state.instructions;
+        totalPrice = this.state.totalPrice;
+        imgSrc = this.state.imgSrc;
+        description = "No description found for this product";
+        break;
+      default:
+        description = ingredients = foodName = instructions = <b>Failed to load data, please try again</b>
+        break;
+    }
 
     return (
       <div className="InfoDish row container-fluid">
@@ -88,7 +136,7 @@ class InfoDish extends Component {
                 <h3>{foodName}</h3>
                 <img alt="displayed food item." className="foodBigImg" src={imgSrc}/>
                 <br/>
-                <p>No description found for this product.</p>
+                <p>{description}</p>
                 <Link to="/search">
                   <button id="backToSearch">Back To Search</button>
                 </Link>
@@ -111,12 +159,12 @@ class InfoDish extends Component {
                       <hr/>
                       <div className="row">
                           <div className="col">
-                              <button onClick={this.addToMenu} data-food-id={this.props.id} className="yellow text-left">
+                              <button onClick={this.addDishToMenu} data-food-id={this.props.id} className="yellow text-left">
                                   Add to menu
                               </button>
                           </div>
                           <div className="col">
-                              <p className="text-right">USD <span id="totalIngredientCost">{this.props.model.getMenuPrice(pricePerServing)}</span></p>
+                              <p className="text-right">USD <span id="totalIngredientCost">{this.state.totalPrice}</span></p>
                           </div>
                       </div>
 

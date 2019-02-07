@@ -79,6 +79,15 @@ const DinnerModel = function () {
     }).catch(handleError);
   }
 
+  //Removes dish from menu
+  this.removeDishFromMenu = function(id) {
+    for(let key in selectedDishes){
+      if (selectedDishes[key].id == id) {
+        delete selectedDishes[key];
+      }
+    }
+  }
+
   // API Calls
 
   this.getAllDishes = function (type,filter) {
