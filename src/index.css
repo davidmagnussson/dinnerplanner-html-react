@@ -42,6 +42,7 @@ button {
 
 #cart{
     border: 2px solid black;
+    height: 100%;
 }
 
 #cart-description{
@@ -215,10 +216,6 @@ button {
 }
 
 #test1{
-  background: lightgrey;
-  border: 2px solid black;
-}
-
-#test2{
-  background: lightgrey;
+  padding: 0px!important;
+  margin: 0px!important;
 }
