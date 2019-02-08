@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MenuItem from '../MenuItem/MenuItem';
+
 import './Sidebar.css';
 
 import { Link } from 'react-router-dom';
@@ -21,6 +23,10 @@ class Sidebar extends Component {
   // Ska vi inte längre ha this.update som observer??
   componentDidMount() {
     this.props.model.addObserver(this)
+
+    this.setState({
+      menuItems: this.props.model.getFullMenu(),
+    });
   }
 
   // this is called when component is removed from the DOM
@@ -35,6 +41,7 @@ class Sidebar extends Component {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests(),
       menuprice: this.props.model.getNumberOfGuests(),
+      menuItems: this.props.model.getFullMenu(),
     })
   }
 
@@ -45,6 +52,17 @@ class Sidebar extends Component {
 
   // Nedan är det vi vill rendera in där vi "Kallar" komponenten <Sidebar />
   render() {
+    let menuItems = null;
+    // Liknade det som finns i Dishes.js. Laddar in alla rätter i en state variable.
+    // Varje cell kommer vara en matträtt. Detta "map":as ut så att för varje rätt skapas en <MenuItem /> komponent
+    if(this.state.menuItems == undefined || this.state.menuItems ==[]){
+        menuItems = <em>Cart is empty!</em>
+    } else{
+        menuItems = this.state.menuItems.map((menuItem) =>
+          <MenuItem model={this.props.model} itemInformation={menuItem} />
+        )
+    }
+    // <MenuItem model={this.props.model} />
     return (
       <div className="Sidebar col-md-12" id="cart">
         <div id="header-in-cart" className="row">
@@ -63,7 +81,7 @@ class Sidebar extends Component {
             <form id="num-people-form" action="#">
                 <div className="form-group row">  {/*Denna inline fungerar ej*/}
                     <label htmlFor="number-of-people" className="col">People</label>
-                    <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+                    <input value={this.state.numberOfGuests} type="number" onChange={this.onNumberOfGuestsChanged}/>
                 </div>
             </form>
             <div id="cart-description" className="row">
@@ -74,7 +92,7 @@ class Sidebar extends Component {
             </div>
 
             <div id="items" className="container-fluid">
-              {this.state.numberOfGuests}
+              {menuItems}
             </div>
 
             <div id="menu-list container-fluid">

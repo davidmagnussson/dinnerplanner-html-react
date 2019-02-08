@@ -14,7 +14,6 @@ class Dishes extends Component {
     // e.g. API data loading or error
     this.state = {
       status: 'INITIAL',
-      // dishesList: this.props.dishesToShow,
     }
   }
 
