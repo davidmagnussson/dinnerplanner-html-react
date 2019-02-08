@@ -101,8 +101,8 @@ class InfoDish extends Component {
         break;
       case 'LOADED':
         ingredients =
-          this.state.ingredients.map((ingredient) =>
-            <li key={ingredient.id} className="ingredientItem col-sm-12">
+          this.state.ingredients.map((ingredient, index) =>
+            <li key={index} className="ingredientItem col-sm-12">
               <div className="row">
                   <div id="quantityAndUnit" className="col">{ingredient.amount} {ingredient.unit}</div>
                   <div id="name" className="col">{ingredient.name}</div>
