@@ -67,7 +67,7 @@ class Dishes extends Component {
         dishesList = <em>Loading...</em>
         break;
       case 'LOADED':
-        console.log(this.state.dishes);
+        // console.log(this.state.dishes);
         if(this.state.dishes.length == 0 || this.state.dishes === undefined){
           dishesList = <em>No results found!</em>
         } else{

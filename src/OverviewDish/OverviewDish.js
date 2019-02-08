@@ -15,7 +15,7 @@ class OverviewDish extends Component {
 
     let foodItems = this.props.model.getFullMenu().map((dish) =>
       /* NOTE: Do we need ID if we have key? */
-      <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={dish.image} link={"/infoDish/"+dish.id} cost={"USD "+dish.pricePerServing}/>
+      <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={dish.image} link={"/infoDish/"+dish.id} cost={"USD "+Math.floor(dish.pricePerServing*this.props.model.getNumberOfGuests())}/>
     );
 
     let fullMenuPrice = this.props.model.getTotalMenuPrice();

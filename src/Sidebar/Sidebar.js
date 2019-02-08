@@ -40,7 +40,7 @@ class Sidebar extends Component {
   update() {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests(),
-      menuprice: this.props.model.getNumberOfGuests(),
+      menuprice: this.props.model.getTotalMenuPrice(),
       menuItems: this.props.model.getFullMenu(),
     })
   }
@@ -59,7 +59,7 @@ class Sidebar extends Component {
         menuItems = <em>Cart is empty!</em>
     } else{
         menuItems = this.state.menuItems.map((menuItem) =>
-          <MenuItem model={this.props.model} itemInformation={menuItem} />
+          <MenuItem key={menuItem.id} model={this.props.model} itemInformation={menuItem} />
         )
     }
     // <MenuItem model={this.props.model} />
