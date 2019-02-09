@@ -12,7 +12,7 @@ class MenuItem extends Component {
     return (
           <div className="cart-item row text-center" key={this.props.itemInformation.id}>
             <p className="foodName text-left col" id={this.props.itemInformation.id}>{this.props.itemInformation.title}</p>
-            <p className="foodCostElement text-right" id={this.props.itemInformation.id}>{this.props.itemInformation.title+"*"+this.props.model.getNumberOfGuests()}</p> {/*Denna ska ändras till priset på rätten*/}
+            <p className="foodCostElement text-right" id={this.props.itemInformation.id}>{Math.round(this.props.itemInformation.pricePerServing*this.props.model.getNumberOfGuests())}</p> {/*Denna ska ändras till priset på rätten*/}
           </div>
     );
   }
