@@ -8,15 +8,29 @@ class FinalDish extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      foodItems:this.props.model.getFullMenu().map((dish) =>
+        <PrintItem key={dish.id} foodName={dish.title} imgSrc={dish.image} instructions={dish.instructions}/>
+      )
+    }
   }
 
+  componentDidMount() {
+    this.props.model.addObserver(this)
+  }
+
+  componentWillUnmount() {
+    this.props.model.removeObserver(this)
+  }
+
+  update(){
+    this.setState({
+      foodItems:this.props.model.getFullMenu().map((dish) =>
+        <PrintItem key={dish.id} foodName={dish.title} imgSrc={dish.image} instructions={dish.instructions}/>
+      )
+    })
+  }
   render() {
-
-    let foodItems = this.props.model.getFullMenu().map((dish) =>
-      /* NOTE: Do we need ID if we have key? */
-      <PrintItem key={dish.id} foodName={dish.title} imgSrc={dish.image} instructions={dish.instructions}/>
-    );
-
     return (
       <div className="FinalDish row container-fluid">
 
@@ -24,7 +38,7 @@ class FinalDish extends Component {
             <MyDinner model={this.props.model}/>
 
             <div className="restDiv col-md-12">
-              {foodItems}
+              {this.state.foodItems}
             </div>
          </div>
 
