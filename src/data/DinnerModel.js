@@ -6,7 +6,7 @@ const httpOptions = {
 
 const DinnerModel = function () {
 
-  let numberOfGuests = 4;
+  let numberOfGuests;
   let observers = [];
   let selectedDishes=[];
   let showDishes = [];
@@ -14,6 +14,7 @@ const DinnerModel = function () {
   // Get-ers and Set-ers:
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
+    document.cookie = "numberOfGuests=" + num;
     notifyObservers();
   };
 
@@ -75,6 +76,8 @@ const DinnerModel = function () {
         }
       }
       selectedDishes.push(data);
+      for (let key in selectedDishes)
+        document.cookie = selectedDishes[key].id + "=" + selectedDishes[key].id;
       // console.log("MENU: " + this.getFullMenu.length);
       notifyObservers();
     }).catch(handleError);
@@ -85,6 +88,7 @@ const DinnerModel = function () {
     for(let key in selectedDishes){
       if (selectedDishes[key].id == id) {
         delete selectedDishes[key];
+        document.cookie = id + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
       }
     }
   }
