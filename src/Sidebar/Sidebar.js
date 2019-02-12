@@ -47,7 +47,9 @@ class Sidebar extends Component {
 
   // our handler htmlFor the input's on change event, detta är nu vår controller!
   onNumberOfGuestsChanged = (e) => {
-    this.props.model.setNumberOfGuests(+e.target.value);
+    if (e.target.value > 0){
+      this.props.model.setNumberOfGuests(+e.target.value);
+    }
   }
 
   // Nedan är det vi vill rendera in där vi "Kallar" komponenten <Sidebar />
@@ -70,7 +72,7 @@ class Sidebar extends Component {
                 <strong>My Dinner</strong>
             </div>
             <div className="d-block d-md-none">
-                <strong><span className="total_cost">SEK 0.00</span></strong>
+                <strong><span className="total_cost">SEK {this.state.menuprice}</span></strong>
                 <button data-toggle="collapse" data-target="#on-mobile-collapse" type="button" id="menu-button">
                     <i className="fas fa-bars"></i>
                 </button>

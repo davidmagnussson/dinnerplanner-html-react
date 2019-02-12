@@ -12,7 +12,7 @@ class OverviewDish extends Component {
 
     this.state = {
       foodItems:this.props.model.getFullMenu().map((dish) =>
-        <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={dish.image} link={"/infoDish/"+dish.id} cost={"USD "+Math.floor(dish.pricePerServing*this.props.model.getNumberOfGuests())}/>
+        <FoodItem key={dish.id} id={dish.id} foodName={dish.title} imgSrc={dish.image} link={"/infoDish/"+dish.id} cost={"SEK "+Math.floor(dish.pricePerServing*this.props.model.getNumberOfGuests())}/>
       ),
       fullMenuPrice: this.props.model.getTotalMenuPrice(),
     }
@@ -55,7 +55,7 @@ class OverviewDish extends Component {
                         </div>
                         <div className="col-md-2">
                             <div id="totalPrice" className="d-none d-md-block d-lg-block"></div>
-                            Total: <br/> <span>{this.state.fullMenuPrice}</span> USD
+                            Total: <br/> <span>{this.state.fullMenuPrice}</span> SEK
                         </div>
                     </div>
                     <hr/>

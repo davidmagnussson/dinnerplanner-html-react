@@ -164,7 +164,7 @@ class InfoDish extends Component {
                               </button>
                           </div>
                           <div className="col">
-                              <p className="text-right">USD <span id="totalIngredientCost">{this.state.totalPrice}</span></p>
+                              <p className="text-right">SEK <span id="totalIngredientCost">{this.state.totalPrice}</span></p>
                           </div>
                       </div>
 
