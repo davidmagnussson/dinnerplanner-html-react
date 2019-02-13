@@ -54,6 +54,7 @@ class Sidebar extends Component {
 
   // Nedan är det vi vill rendera in där vi "Kallar" komponenten <Sidebar />
   render() {
+    const { menuprice, numberOfGuests } = this.state;
     let menuItems = null;
     // Liknade det som finns i Dishes.js. Laddar in alla rätter i en state variable.
     // Varje cell kommer vara en matträtt. Detta "map":as ut så att för varje rätt skapas en <MenuItem /> komponent
@@ -72,7 +73,7 @@ class Sidebar extends Component {
                 <strong>My Dinner</strong>
             </div>
             <div className="d-block d-md-none">
-                <strong><span className="total_cost">SEK {this.state.menuprice}</span></strong>
+                <strong><span className="total_cost">SEK {menuprice}</span></strong>
                 <button data-toggle="collapse" data-target="#on-mobile-collapse" type="button" id="menu-button">
                     <i className="fas fa-bars"></i>
                 </button>
@@ -83,7 +84,7 @@ class Sidebar extends Component {
             <form id="num-people-form" action="#">
                 <div className="form-group row">  {/*Denna inline fungerar ej*/}
                     <label htmlFor="number-of-people" className="col">People</label>
-                    <input value={this.state.numberOfGuests} type="number" onChange={this.onNumberOfGuestsChanged}/>
+                    <input value={numberOfGuests} type="number" onChange={this.onNumberOfGuestsChanged}/>
                 </div>
             </form>
             <div id="cart-description" className="row">
