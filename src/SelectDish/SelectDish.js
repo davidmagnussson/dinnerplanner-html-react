@@ -12,7 +12,7 @@ class SelectDish extends Component {
       typeValue: 'main course'
     };
   }
-  
+
   updateShowDishes = (e) => {
       e.preventDefault();
       this.props.model.setShowDishes(this.state.typeValue, this.state.filterValue);
@@ -34,11 +34,11 @@ class SelectDish extends Component {
 
   render() {
     return (
-      <div className="SelectDish row container-fluid"> {/*Detta är alltså den gamla foodView */}
-        <div className="col-md-3" id="test1">
+      <div className="SelectDish row container-fluid">
+        <div className="col-md-3" id="entireSidebar">
           <Sidebar model={this.props.model}/>
         </div>
-        <div className="col-md-9" id="test3">
+        <div className="col-md-9">
           <div className="row form-inline" id="test2">
       	      <div className="col-md-12 d-none d-md-block d-lg-block" id="filter-div">
       	          <strong>FIND A DISH</strong>
