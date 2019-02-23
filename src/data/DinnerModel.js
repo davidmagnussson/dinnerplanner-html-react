@@ -96,7 +96,8 @@ const DinnerModel = function () {
   // API Calls
 
   this.getAllDishes = function (type,filter) {
-    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+type+" "+filter;
+    let url = "http://sunset.nada.kth.se:8080/iprog/group/12/recipes/search?query="+type+" "+filter;
+    // let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?query="+type+" "+filter;
     return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }})
       .then(processResponse)
       .catch(handleError)
@@ -104,7 +105,8 @@ const DinnerModel = function () {
 
   //function that returns a dish of specific ID
   this.getDish = function (id) {
-    let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
+    let url = "http://sunset.nada.kth.se:8080/iprog/group/12/recipes/"+id+"/information";
+    // let url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/"+id+"/information";
     return fetch(url,{ headers:{ 'X-Mashape-Key': API_KEY }})
       .then(processResponse)
       .catch(handleError);
