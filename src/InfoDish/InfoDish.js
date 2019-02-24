@@ -13,23 +13,23 @@ class InfoDish extends Component {
       foodName: "",
       instructions: "",
       totalPrice: 0,
-      ingredients: []
+      ingredients: [],
     }
 
-    this.addDishToMenu = this.addDishToMenu.bind(this);
+    // this.addDishToMenu = this.addDishToMenu.bind(this);
   }
 
   // Makes API-Call Promise and sets state as data is loaded.
   componentDidMount(){
     this.props.model.addObserver(this);
     // Stack thread: https://stackoverflow.com/questions/33242378/rendering-react-components-with-promises-inside-the-render-method
-    const self = this;
+    // const self = this;
 
       // Get ID from URL and use it to init a Promise to then set variables:
       const foodID = window.location.href.split("/").slice(-1)[0];
       this.props.model.getDish(foodID).then((data)=>{
         // Set Once:
-        self.setState({
+        this.setState({
               foodName : data.title,
               instructions : data.instructions,
               pricePerServing: data.pricePerServing,
@@ -47,9 +47,9 @@ class InfoDish extends Component {
               };
 
           // Lets add to the current "ingredients" in the state.
-          let newIngredients = self.state.ingredients.slice();
+          let newIngredients = this.state.ingredients.slice();
           newIngredients.push(ingredient);
-          self.setState({
+          this.setState({
             ingredients: newIngredients
           });
 
@@ -87,7 +87,7 @@ class InfoDish extends Component {
   }
 
   // Adds the current dish to the menu when the "Add to menu" btn is clicked.
-  addDishToMenu(){
+  addDishToMenu = () => {
     const foodID = window.location.href.split("/").slice(-1)[0];
     this.props.model.addDishToMenu(foodID);
   }
